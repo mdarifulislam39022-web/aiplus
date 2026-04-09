@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIPulse | Best AI Tool Reviews</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        .tool-card:hover { transform: translateY(-10px); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <nav class="bg-white/80 backdrop-blur-md border-b sticky top-0 z-50 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="showHome()">
+                <div class="bg-blue-600 p-2 rounded-xl text-white shadow-lg shadow-blue-200">
+                    <i class="fas fa-bolt-lightning"></i>
+                </div>
+                <span class="text-2xl font-extrabold tracking-tight">AIPulse</span>
+            </div>
+            <div class="hidden md:flex space-x-8 font-bold text-sm text-slate-600">
+                <button onclick="showHome()" class="hover:text-blue-600 transition">Home</button>
+                <a href="#tools-grid" class="hover:text-blue-600 transition">Explore</a>
+                <button onclick="alert('Join logic coming soon!')" class="bg-slate-900 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition shadow-md">Join Pro</button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="main-content">
+        <header class="py-24 text-center bg-white px-6">
+            <h1 class="text-6xl md:text-7xl font-black mb-6 tracking-tight">Expert Reviews <br><span class="text-blue-600">For Modern AI.</span></h1>
+            <p class="text-slate-500 max-w-2xl mx-auto text-lg mb-12 font-medium">We test thousands of AI tools so you don't have to. Find the perfect match for your next project.</p>
+            
+            <div class="max-w-xl mx-auto flex items-center bg-white border-2 border-slate-100 rounded-3xl shadow-2xl p-2 focus-within:border-blue-500 transition-all">
+                <i class="fas fa-search text-slate-400 ml-5 mr-3"></i>
+                <input type="text" id="searchInput" onkeyup="searchTools()" placeholder="Search (e.g. 'ChatGPT' or 'Design')" class="w-full py-4 outline-none text-slate-700 font-medium">
+            </div>
+        </header>
+
+        <main class="max-w-7xl mx-auto px-6 py-20">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10" id="tools-grid">
+                </div>
+        </main>
+    </div>
+
+    <footer class="py-12 text-center border-t bg-white">
+        <p class="text-slate-400 font-bold text-sm tracking-widest uppercase">© 2026 AIPulse Global • Reviewed with ❤️</p>
+    </footer>
+
+    <script>
+        // All Popular AI Tools Database
+        const tools = [
+            { id: 'chatgpt', name: 'ChatGPT', cat: 'Chatbot', rating: '4.9', img: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600', desc: 'The industry-leading AI language model by OpenAI.', longDesc: 'ChatGPT is a state-of-the-art language model designed for conversational interactions. It can code, write essays, and brainstorm ideas instantly.', pros: ['Fast Processing', 'Excellent Coding', 'GPT-4o Support'] },
+            { id: 'midjourney', name: 'Midjourney', cat: 'Art Gen', rating: '4.8', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600', desc: 'High-end artistic image generation tool.', longDesc: 'Midjourney is widely considered the best for high-quality artistic images. It lives in Discord and produces unmatched visual fidelity.', pros: ['Professional Art', 'High Resolution', 'Vibrant Community'] },
+            { id: 'claude', name: 'Claude AI', cat: 'Writing', rating: '4.7', img: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600', desc: 'The most natural sounding AI writer by Anthropic.', longDesc: 'Claude is known for its human-like conversational tone and ability to analyze massive documents with high ethical standards.', pros: ['Natural Writing', 'PDF Analysis', 'Safe Output'] },
+            { id: 'gemini', name: 'Google Gemini', cat: 'Multi-modal', rating: '4.6', img: 'https://images.unsplash.com/photo-1707333550408-c7d495ec35b1?w=600', desc: 'Googles smartest AI integrated everywhere.', longDesc: 'Gemini is built into Google ecosystem (Docs, Gmail, Drive). It supports video, image, and text understanding natively.', pros: ['Google Workspace Integration', 'Fast', 'Multimodal'] },
+            { id: 'runway', name: 'Runway Gen-2', cat: 'Video', rating: '4.5', img: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600', desc: 'Transform text into high-quality videos.', longDesc: 'Runway is the gold standard for AI video. Perfect for creators, it offers text-to-video and image-to-video capabilities.', pros: ['Professional Video', 'Motion Control', 'High Res Export'] }
+        ];
+
+        function showHome() {
+            window.location.reload();
+        }
+
+        function displayTools(data) {
+            const grid = document.getElementById('tools-grid');
+            grid.innerHTML = '';
+            data.forEach(t => {
+                grid.innerHTML += `
+                    <div class="tool-card bg-white rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-500 overflow-hidden cursor-pointer" onclick="showDetails('${t.id}')">
+                        <img src="${t.img}" class="w-full h-56 object-cover">
+                        <div class="p-10">
+                            <span class="text-[10px] font-extrabold text-blue-600 bg-blue-50 px-3 py-1 rounded-full uppercase tracking-tighter">${t.cat}</span>
+                            <h3 class="text-3xl font-black mt-4 mb-3">${t.name}</h3>
+                            <p class="text-slate-500 font-medium text-sm leading-relaxed mb-8">${t.desc}</p>
+                            <div class="flex justify-between items-center pt-6 border-t border-slate-50">
+                                <span class="font-bold text-slate-900"><i class="fas fa-star text-yellow-400 mr-1"></i> ${t.rating}</span>
+                                <span class="text-blue-600 font-bold text-sm">Read Review →</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function showDetails(id) {
+            const t = tools.find(item => item.id === id);
+            document.getElementById('main-content').innerHTML = `
+                <main class="max-w-4xl mx-auto px-6 py-20">
+                    <button onclick="showHome()" class="text-slate-500 font-bold mb-10 hover:text-blue-600 transition flex items-center gap-2">
+                        <i class="fas fa-arrow-left"></i> Back to Exploration
+                    </button>
+                    <div class="bg-white rounded-[3rem] shadow-2xl overflow-hidden border border-slate-50">
+                        <img src="${t.img}" class="w-full h-[450px] object-cover">
+                        <div class="p-12 md:p-20">
+                            <h1 class="text-6xl font-black mb-6">${t.name} Review</h1>
+                            <div class="flex items-center gap-4 mb-10 text-yellow-500 text-xl font-bold">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                <span class="text-slate-900 ml-2">${t.rating}/5.0 Official Score</span>
+                            </div>
+                            <p class="text-2xl text-slate-600 leading-relaxed mb-12 font-medium">${t.longDesc}</p>
+                            <h3 class="text-3xl font-black mb-8 text-slate-900">Why professionals love it:</h3>
+                            <ul class="space-y-5 mb-16">
+                                ${t.pros.map(p => `<li class="flex items-center gap-4 text-xl font-bold text-slate-700"><i class="fas fa-check-circle text-green-500 text-2xl"></i> ${p}</li>`).join('')}
+                            </ul>
+                            <button onclick="window.open('https://google.com/search?q=${t.name}')" class="w-full md:w-auto bg-blue-600 text-white px-14 py-6 rounded-[2rem] font-black text-xl shadow-2xl shadow-blue-200 hover:bg-blue-700 transition transform hover:scale-105">Try ${t.name} Now</button>
+                        </div>
+                    </div>
+                </main>
+            `;
+            window.scrollTo(0,0);
+        }
+
+        function searchTools() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = tools.filter(t => t.name.toLowerCase().includes(query) || t.cat.toLowerCase().includes(query));
+            displayTools(filtered);
+        }
+
+        displayTools(tools);
+    </script>
+</body>
+</html>
